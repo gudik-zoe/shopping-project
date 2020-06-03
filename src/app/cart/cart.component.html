@@ -18,15 +18,15 @@
         [class]="pro.id % 2 !== 0 ? 'color' : ''"
         *ngFor="let pro of cardItems"
       >
-        <td>{{ pro.title }} , {{pro.uniqueId}}</td>
-        <td>{{ pro.type }} </td>
+        <td>{{ pro.title }} , {{ pro.uniqueId }}</td>
+        <td>{{ pro.type }}</td>
         <td><img src="{{ pro.image }}" width="20" height="20" /></td>
         <td>
           <button
-            [disabled]="pro.quantity === 0"
+            [disabled]="pro.quantity === 1"
             class="btn btn-danger btn-sm"
             type="button"
-             (click)="minus(pro.id , pro.title)" 
+            (click)="minus(pro.id, pro.title)"
           >
             -
           </button>
@@ -34,17 +34,17 @@
           <button
             class="btn btn-success btn-sm"
             type="button"
-            (click)="plus(pro.id , pro.title)"
+            (click)="plus(pro.id, pro.title)"
           >
             +
           </button>
         </td>
         <td>{{ pro.price | currency }}</td>
-        <td>{{ pro.price * pro.quantity | currency }}</td> 
+        <td>{{ pro.price * pro.quantity | currency }}</td>
         <button
           type="button"
           class="btn btn-danger btn-sm mt-2"
-          (click)="remove(pro.uniqueId , pro.id)"
+          (click)="remove(pro.uniqueId, pro.id)"
         >
           x
         </button>
@@ -66,7 +66,6 @@
   </table>
 </div>
 
-
 <div
   *ngIf="cardItems.length == 0"
   class="container ml-5"
@@ -86,15 +85,3 @@
 </div>
 
 <hr />
-
-
-
-
-
-
-
-
-
-
-
-
