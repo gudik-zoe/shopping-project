@@ -1,0 +1,129 @@
+
+<br>
+<div class="container mt-5" style="background-color: lightgray; width: 650px; border-radius: 10px;">
+    <br>
+    <h3 class="text-center"> welcome to Shopping-Project!</h3>
+    <h5 class="text-center" *ngIf="loggedIn.length == 0">Sign in to access our full services</h5>
+    <p *ngIf="loggedIn.length > 0"> welcome enjoy shopping!
+        <button type="button" class="btn btn-success" (click)="toStore()"> go to store</button></p> 
+
+
+
+<br>
+<div *ngIf="loggedIn.length == 0">
+<div class="container mt-5" *ngIf="!signIn">
+    <div style="float: right;">
+       <button class="btn btn-success" type="button" (click)="switch()" >switch to sign in</button>
+   
+    </div>
+    <br>
+    <form [formGroup]="signUpForm">
+        <!-- <div class="row">
+        <div class="col-md-4">
+            
+            <label>name</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              [class.is-invalid]="
+                !signUpForm.get('name').valid && signUpForm.get('name').touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="signUpForm.get('name').invalid && signUpForm.get('name').touched"
+            >
+              this field is reqired
+            </small>
+          </div>
+          <div class="col-md-4">
+            <label>lastName</label>
+            <input
+              type="text"
+              formControlName="lastName"
+              class="form-control"
+              [class.is-invalid]="
+                !signUpForm.get('lastName').valid && signUpForm.get('lastName').touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="
+                signUpForm.get('lastName').invalid && signUpForm.get('lastName').touched
+              "
+            >
+              this field is reqired
+            </small>
+          </div>
+        </div> -->
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email"
+             formControlName="email" 
+             class="form-control"
+             [class.is-invalid]="signUpForm.get('email').invalid && signUpForm.get('email').touched" />
+             <small class="text-danger" *ngIf="signUpForm.get('email').errors?.required && signUpForm.get('email').touched">this field is required</small>
+             <small class="text-danger" *ngIf="signUpForm.get('email').errors?.email && signUpForm.get('email').touched">insert an appropriate email</small>
+            </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control"
+            [class.is-invalid]="signUpForm.get('password').invalid && signUpForm.get('password').touched" />
+            <small class="text-danger" *ngIf="signUpForm.get('password').errors?.required && signUpForm.get('password').touched">this field is required</small>
+            <small class="text-danger" *ngIf="signUpForm.get('password').errors?.minlength && signUpForm.get('password').touched">password should be longer than 6 characters</small>
+        </div>
+        <div *ngIf="!signIn" class="form-group">
+            <label>confirm password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" 
+            [class.is-invalid]="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched" />
+            <small class="text-danger" *ngIf="signUpForm.get('confirmPassword').errors?.hello && signUpForm.get('confirmPassword').touched">not identical to Password</small> 
+            <small class="text-danger" *ngIf="signUpForm.get('confirmPassword').errors?.required && signUpForm.get('confirmPassword').touched">this field is required</small>
+        </div>
+        
+    </form>
+  <button [disabled]="signUpForm.invalid" class="btn btn-primary" type="button" (click)="submit()">sign up</button>     <img style="margin-left: 5px;" *ngIf="loading" src="http://az779572.vo.msecnd.net/res/content/images/loading_spin_grey.gif%7C11ezlroiohbdwk2imlrjrbw2.gif" width="30" height="30" >
+</div>
+
+<div class="contianer" *ngIf="signUpsuccess">
+    <p>your credentials have been successfully registered to login <button class="btn btn-success btn-sm" type="button" (click)="toSignIn()">click here</button></p>
+</div>
+
+
+
+
+<br>
+<div class="container mt-5" *ngIf="signIn">
+    <div style="float: right;">
+        <small>not registered yet  <button class="btn btn-success" type="button" (click)="switch()" >switch to sign up</button> </small>
+    </div>
+    <br>
+    <form [formGroup]="signInForm">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email"
+             formControlName="email" 
+             class="form-control"
+             [class.is-invalid]="signInForm.get('email').invalid && signInForm.get('email').touched" />
+             <small class="text-danger" *ngIf="signInForm.get('email').errors?.required && signInForm.get('email').touched">this field is required</small>
+             <small class="text-danger" *ngIf="signInForm.get('email').errors?.email && signInForm.get('email').touched">insert an appropriate email</small>
+            </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control"
+            [class.is-invalid]="signInForm.get('password').invalid && signInForm.get('password').touched" />
+            <small class="text-danger" *ngIf="signInForm.get('password').errors?.required && signInForm.get('password').touched">this field is required</small>
+            <small class="text-danger" *ngIf="signInForm.get('password').errors?.minlength && signInForm.get('password').touched">password should be longer than 6 characters</small>
+        </div>
+        
+    </form>
+    <button [disabled]="signInForm.invalid" class="btn btn-primary" type="button" (click)="submit()">sign In</button> <img style="margin-left: 5px;" *ngIf="loading" src="http://az779572.vo.msecnd.net/res/content/images/loading_spin_grey.gif%7C11ezlroiohbdwk2imlrjrbw2.gif" width="30" height="30" >
+    
+    </div> 
+</div>
+<div *ngIf="error" class="container">
+<span class="text-danger ml-2" style="font-weight: bold;">{{errorMessage}}</span> <button class="btn btn-danger" type="button" (click)="closeError()">ok</button>
+</div>
+<br>
+    
+</div>

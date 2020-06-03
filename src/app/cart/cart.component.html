@@ -1,0 +1,100 @@
+<br />
+<h2 class="text-center mt-5">to buy</h2>
+<div class="container-fluid mt-5">
+  <table class="table" *ngIf="cardItems.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Type</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">price</th>
+        <th scope="col">total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        [class]="pro.id % 2 !== 0 ? 'color' : ''"
+        *ngFor="let pro of cardItems"
+      >
+        <td>{{ pro.title }} , {{pro.uniqueId}}</td>
+        <td>{{ pro.type }} </td>
+        <td><img src="{{ pro.image }}" width="20" height="20" /></td>
+        <td>
+          <button
+            [disabled]="pro.quantity === 0"
+            class="btn btn-danger btn-sm"
+            type="button"
+             (click)="minus(pro.id , pro.title)" 
+          >
+            -
+          </button>
+          <span class="font-weight-bold">{{ pro.quantity }}</span>
+          <button
+            class="btn btn-success btn-sm"
+            type="button"
+            (click)="plus(pro.id , pro.title)"
+          >
+            +
+          </button>
+        </td>
+        <td>{{ pro.price | currency }}</td>
+        <td>{{ pro.price * pro.quantity | currency }}</td> 
+        <button
+          type="button"
+          class="btn btn-danger btn-sm mt-2"
+          (click)="remove(pro.uniqueId , pro.id)"
+        >
+          x
+        </button>
+      </tr>
+      <tr style="background-color: lightseagreen;">
+        <th scope="row">Total</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="font-weight-bold">{{ total() | currency }}</td>
+        <td>
+          <button class="btn btn-success" type="button" (click)="purchase()">
+            checkout
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div
+  *ngIf="cardItems.length == 0"
+  class="container ml-5"
+  style="
+    background-color: lightblue;
+    width: 450px;
+    height: 100px;
+    border-radius: 5px;
+  "
+>
+  <h4 class="text-center" style="color: red;">your card is empty</h4>
+  <div class="container" style="height: 50px;">
+    <button type="button" class="btn btn-success btn-block" (click)="toStore()">
+      add items
+    </button>
+  </div>
+</div>
+
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+

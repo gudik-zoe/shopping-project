@@ -1,0 +1,24 @@
+<br>
+<br>
+<br>
+<div  class="container">
+    <div class="row" *ngFor="let i of details" >
+        <div *ngIf="id === +(i.id)" >
+        <h2>Prouct-name:{{i.productName}}</h2>
+        <img src={{i.image}}>
+        <hr>
+        <li> <span class="font-weight-bold" >CPU: </span>{{i.cpu}}</li>
+        <br>
+        <li> <span class="font-weight-bold" >RAM:</span> {{i.ram}}</li>
+        <br>
+        <li> <span class="font-weight-bold" >Storage:</span> {{i.storage}}</li>
+        <br>
+        <li> <span class="font-weight-bold" >Screen:</span> {{i.screen}}</li>
+        <br>
+        <li> <span class="font-weight-bold" >Price:</span>  {{i.price | currency}}</li>
+        <br>
+        <li> <span class="font-weight-bold" > Description:</span> {{i.description}}</li>
+        <hr>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of laps">
+        <h2>{{ product.title }}</h2>
+  
+        <img src="{{ product.image }}" width="100px" height="100px" />
+        <p>
+          Type:<em> {{ product.type }} </em>
+        </p>
+        <p class="lead">price:{{ product.price | currency }}</p>
+        <button class="btn btn-info btn-sm mb-2" type="button" (click)="goToDescription(product.id)" >description </button>
+        <br>
+        <button
+          [disabled]="product.pressed"
+          type="button"
+          class="btn btn-primary btn-bg"
+          (click)="add(product.id)"
+          
+        >
+          add to card
+        </button>
+        
+        <hr />
+      </div>
+      
+    </div>
+  </div>
+  

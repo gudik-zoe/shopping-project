@@ -1,0 +1,37 @@
+<br>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of products">
+      <h4>{{ product.title }}</h4>
+      <p>
+        type:<em>{{ product.type }}</em>
+      </p>
+
+      <img src="{{ product.image }}" width="100px" height="100px" />
+      <p>
+        difficulty:<em> {{ product.difficulty }} </em>
+      </p>
+      <p class="lead">price:{{ product.price | currency }}</p>
+      <button 
+      *ngIf="product.description"
+      class="btn btn-info btn-sm mb-2"
+       type="button" 
+       (click)="goToDescription(product.id)" >description </button>
+      <br>
+      <button
+        [disabled]="product.pressed"
+        type="button"
+        class="btn btn-primary"
+        (click)="add(product.id)"
+      >
+        add to card
+      </button>
+
+      
+      <hr />
+    </div>
+    
+  </div>
+</div>

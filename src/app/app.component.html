@@ -1,0 +1,57 @@
+<nav *ngIf="loged.length > 0" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <h4>
+    <a
+      routerLinkActive="active-class"
+      style="cursor: pointer; color: white; margin-left: 30px;"
+      routerLink="/products"
+      >cubes store</a
+    >
+  </h4>
+  <h4>
+    <a
+      routerLinkActive="active-class"
+      style="cursor: pointer; color: white; margin-left: 30px;"
+      routerLink="/lap-store"
+      >laps store</a
+    >
+  </h4>
+
+  <h4>
+    <a
+      routerLinkActive="active-class"
+      style="cursor: pointer; color: white; margin-left: 30px;"
+      routerLink="/card"
+      >card</a
+    >
+  </h4>
+
+  <h4>
+    <a
+      routerLinkActive="active-class"
+      style="cursor: pointer; color: white; margin-left: 30px;"
+      routerLink="/purchase"
+      >purchase</a
+    >
+  </h4>
+
+  <h4>
+    <button
+      *ngIf="products.length > 0"
+      class="btn btn-success ml-5"
+      type="button"
+      (click)="goToCard()"
+    >
+      go to card
+    </button>
+  </h4>
+  <!-- <h4>
+    <a
+      routerLinkActive="active-class"
+      style="cursor: pointer; color: white; margin-left: 30px;"
+      routerLink="/auth"
+      >authentication</a
+    >
+  </h4> -->
+</nav>
+
+<router-outlet></router-outlet>
