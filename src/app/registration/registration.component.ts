@@ -18,6 +18,7 @@ export class RegistrationComponent implements OnInit {
   message = 'loading';
   data = true;
   email = [];
+  cardItemsArray = []
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +44,8 @@ export class RegistrationComponent implements OnInit {
       .subscribe((res) => {
         this.myForm.reset();
         this.final = [];
+       
+        
         this.data = false;
 
         this.service.refresh();
@@ -60,12 +63,11 @@ export class RegistrationComponent implements OnInit {
     this.email = this.authService.get();
     this.final = this.service.getCardItems();
 
+
     this.myForm = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       email: [this.email[0], [Validators.required, Validators.email]],
-      // password: ['', [Validators.required, Validators.minLength(6)]],
-      // confirmPassword: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       city: ['', Validators.required],
       province: ['', Validators.required],

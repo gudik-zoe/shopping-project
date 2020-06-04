@@ -106,11 +106,6 @@ else {
   }
 }
 
-
-  
-
-
-
   ngOnInit() {
     this.loggedIn = this.service.get()
     this.signUpForm =this.fb.group({

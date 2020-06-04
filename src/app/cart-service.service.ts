@@ -77,6 +77,7 @@ minus(id , title){
     for (let i of this.products) {
       i.pressed = false;
     }
+    this.cardItems = []
    
   }
 
