@@ -39,8 +39,8 @@ switch(){
 }
 closeError(){
   this.error = false
-  this.signInForm.reset()
-  this.signUpForm.reset()
+  // this.signInForm.get('password').reset()
+  // this.signUpForm.reset()
 }
 toSignIn(){
   this.signIn = true
@@ -65,6 +65,7 @@ submit(){
     this.error = true
     if(error.error.error.message == 'EMAIL_EXISTS'){
       this.errorMessage ='the mail already exists'
+      this.signUpForm.get('email').reset()
       }
 
       else {
@@ -80,6 +81,7 @@ else {
   let email = this.signInForm.get('email').value
   let password = this.signInForm.get('password').value
   this.service.signIn(email,password).subscribe(data => {
+    this.error = false
     this.loading = false
      this.loggedIn.push(email)
     console.log('it worked ')
@@ -91,9 +93,11 @@ else {
  
       if (error.error.error.message == 'EMAIL_NOT_FOUND'){
         this.errorMessage = 'email not found!'
+        this.signInForm.get('email').reset()
     }
     else if (error.error.error.message == 'INVALID_PASSWORD'){
         this.errorMessage = 'incorrect password!'
+        this.signInForm.get('password').reset()
     }
     else {
     this.errorMessage = 'unknown error occured make sure you entered the correct credentials'
@@ -110,8 +114,6 @@ else {
   ngOnInit() {
     this.loggedIn = this.service.get()
     this.signUpForm =this.fb.group({
-      // name:['',Validators.required],
-      // lastName:['',Validators.required],
       email:['' , [Validators.required , Validators.email]],
       password:['' , [Validators.required , Validators.minLength(6)]],
       confirmPassword:['' , Validators.required]
