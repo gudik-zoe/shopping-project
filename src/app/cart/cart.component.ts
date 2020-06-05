@@ -12,8 +12,8 @@ export class CartComponent implements OnInit {
   constructor(private service: CartServiceService, private router: Router) {}
   //l'elemento va tolto subito
   remove(uniqueId , id) {
-    this.service.remove(uniqueId , id)
-     this.cardItems = this.cardItems.filter(item => item.uniqueId !== uniqueId)
+     this.service.remove(uniqueId , id)
+      this.cardItems = this.cardItems.filter(item => item.uniqueId !== uniqueId)    
   }
   
   total() {

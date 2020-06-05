@@ -9,9 +9,7 @@ export class CartServiceService {
 
   constructor(private http: HttpClient) {}
 
-
 cardItems = [];
-
 
 getLaps(){
   return this.laps
@@ -36,7 +34,9 @@ getLaps(){
 
 
   remove(uniqueId , id) {
-    this.cardItems = this.cardItems.filter(item => item.uniqueId !== uniqueId)
+     this.cardItems = this.cardItems.filter(item => item.uniqueId !== uniqueId)
+   
+    
     if (uniqueId <= 8 ){
       this.products[id].pressed =false
     }

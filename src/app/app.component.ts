@@ -15,15 +15,19 @@ export class AppComponent implements OnInit {
     private service: CartServiceService , 
     private authService : AuthService) {}
 
-  products = [];
+  length = []
   title = 'shopping-project';
 
+
+func(){
+  return this.length.length
+}
   goToCard() {
     this.router.navigate(['/card']);
   }
 
   ngOnInit() {
-    this.products = this.service.getCardItems();
+    this.length = this.service.getCardItems()
    this.loged = this.authService.get()
   }
 }
